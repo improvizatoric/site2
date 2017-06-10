@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<div class="container">
+		<div class="navbar navbar-inverse">
+    		<ul class="nav navbar-nav">
+    			<li><a href="{% url 'index' %}" class="navbar-brand">Блог</a></li>
+    			{% for page in latest_page_list %}
+        			<li><a href="{% url 'pdetail' page.id %}" class="blog-nav-item">{{ page.ptitle }}</a></li>
+    			{% endfor %}
+    			<li><a href="/admin/"  class="navbar-brand">Войти</a></li>
+    		</ul>
+    	</div>
+    </div>
+<div class="container">
+	<div><h1>{{ post.title }}</h1></div>
+	<div class="page-header">Опубликовано: {{ post.pub_date }} Последние изменения: {{ post.change_date }} Автор: {{ post.author }}</div>
+	<div class="well">{{ post.content | safe }}</div>
+</div>

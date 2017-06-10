@@ -1,0 +1,28 @@
+
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<link href="blog.css" rel="stylesheet">
+{% if latest_post_list %}
+	<div class="container">
+		<div class="navbar navbar-inverse">
+    		<ul class="nav navbar-nav">
+    			<li><a href="{% url 'index' %}" class="navbar-brand">Блог</a></li>
+    			{% for page in latest_page_list %}
+        			<li><a href="{% url 'pdetail' page.id %}" class="blog-nav-item">{{ page.ptitle }}</a></li>
+    			{% endfor %}
+    			<li><a href="/admin/"  class="navbar-brand">Войти</a></li>
+    		</ul>
+    	</div>
+    </div>
+    <div class="container">
+    {% for post in latest_post_list %}
+        <div class="panel panel-default">
+        	<div class="panel-heading"><h2><a href="{% url 'detail' post.id %}">{{ post.title }}</a></h2></div>
+        	<div class="panel-body">{{ post.pub_date }} {{ post.author }}</div>
+        	<div class="panel-body">{{ post.preview }}</div>
+        </div>
+    {% endfor %}
+    </div>
+{% else %}
+    <p>No posts are available.</p>
+{% endif %}
